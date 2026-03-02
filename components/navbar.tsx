@@ -30,15 +30,15 @@ export default function Navbar() {
         scrolled ? 'bg-background/95 backdrop-blur-md border-b border-border' : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
+      <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-20">
         {/* Logo */}
         <Link href="#" className="flex items-center gap-2 group">
           <Image
             src="/images/logo.webp"
             alt={`Logo ${siteContent.brandShort}`}
-            width={190}
-            height={84}
-            className="h-11 w-auto object-contain"
+            width={300}
+            height={132}
+            className="h-14 md:h-16 w-auto object-contain"
             priority
           />
           <span className="w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform" />

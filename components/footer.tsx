@@ -15,9 +15,9 @@ export default function Footer() {
           <Image
             src="/images/logo.webp"
             alt={`Logo ${siteContent.brandShort}`}
-            width={170}
-            height={75}
-            className="h-10 w-auto object-contain"
+            width={260}
+            height={114}
+            className="h-14 md:h-16 w-auto object-contain"
           />
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
         </Link>
