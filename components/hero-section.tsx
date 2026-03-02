@@ -14,7 +14,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src={siteContent.heroImage}
-          alt={`${siteContent.coachName} en combate de boxeo`}
+          alt="Entrenamiento de boxeo en ring"
           fill
           className="object-cover object-center"
           priority
@@ -36,7 +36,7 @@ export default function HeroSection() {
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="w-6 h-px bg-primary" />
             <span className="text-primary text-xs font-black uppercase tracking-[0.25em]">
-              Clases con Cesar
+              Boxeo en Zona 18
             </span>
           </div>
 
@@ -46,13 +46,13 @@ export default function HeroSection() {
             <br />
             <span className="text-primary">boxeo</span>
             <br />
-            con el flaco pesado
+            con El Flaco Pesado
           </h1>
 
           {/* Sub-headline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed mb-10 font-medium">
-            {siteContent.brandName}. Horarios de lunes a viernes, atencion por WhatsApp y
-            entrenamiento guiado por {siteContent.coachName} en zona 18.
+            {siteContent.brandShort}. Clases guiadas de lunes a viernes, reserva por WhatsApp
+            o formulario en segundos.
           </p>
 
           {/* CTA Buttons */}
@@ -79,7 +79,7 @@ export default function HeroSection() {
             {[
               { value: '8', label: 'Horarios Por Dia' },
               { value: 'Lun - Vie', label: 'Dias De Clase' },
-              { value: '1', label: 'Coach Principal' },
+              { value: '60 Min', label: 'Cada Sesion' },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col">
                 <span className="text-3xl font-black text-primary leading-none">{stat.value}</span>

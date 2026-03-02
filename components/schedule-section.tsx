@@ -1,25 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { Clock, ChevronLeft, ChevronRight } from 'lucide-react'
-import { siteContent, type DayCode } from '@/lib/site-content'
+import { Clock, Sun, Moon, CalendarX2 } from 'lucide-react'
+import { siteContent } from '@/lib/site-content'
 
 export default function ScheduleSection() {
-  const [activeDay, setActiveDay] = useState<DayCode>('Lun')
-  const currentIndex = siteContent.weekDays.findIndex((day) => day.code === activeDay)
-  const daySchedule = siteContent.schedule[activeDay]
-  const isClosedDay = daySchedule.length === 0
-
-  const prev = () => {
-    const prevIndex = (currentIndex - 1 + siteContent.weekDays.length) % siteContent.weekDays.length
-    setActiveDay(siteContent.weekDays[prevIndex].code)
-  }
-
-  const next = () => {
-    const nextIndex = (currentIndex + 1) % siteContent.weekDays.length
-    setActiveDay(siteContent.weekDays[nextIndex].code)
-  }
-
   return (
     <section id="horarios" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
@@ -32,8 +16,8 @@ export default function ScheduleSection() {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-foreground text-balance leading-tight">
-              Horarios de{' '}
-              <span className="text-primary">entrenamiento</span>
+              Horario de{' '}
+              <span className="text-primary">lunes a viernes</span>
             </h2>
           </div>
           <div className="flex items-center gap-2">
@@ -42,84 +26,60 @@ export default function ScheduleSection() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 mb-8">
-          <button
-            onClick={prev}
-            className="w-9 h-9 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-            aria-label="Dia anterior"
-          >
-            <ChevronLeft size={18} />
-          </button>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {siteContent.scheduleBands.map((band) => {
+            const Icon = band.title === 'Manana' ? Sun : Moon
 
-          <div className="flex-1 overflow-x-auto">
-            <div className="flex gap-2 min-w-max">
-              {siteContent.weekDays.map((day) => (
-                <button
-                  key={day.code}
-                  onClick={() => setActiveDay(day.code)}
-                  className={`px-4 py-2.5 text-xs font-black uppercase tracking-widest transition-all duration-200 border ${
-                    activeDay === day.code
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'border-border text-muted-foreground hover:border-primary/50 hover:text-foreground'
-                  }`}
-                >
-                  {day.label}
-                </button>
-              ))}
-            </div>
-          </div>
+            return (
+              <article key={band.title} className="border border-border bg-card/20 overflow-hidden">
+                <header className="px-6 py-4 border-b border-border bg-secondary/40 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <Icon size={16} className="text-primary" />
+                    <h3 className="text-sm font-black uppercase tracking-widest text-foreground">
+                      {band.title}
+                    </h3>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">
+                    Clase de Boxeo
+                  </span>
+                </header>
 
-          <button
-            onClick={next}
-            className="w-9 h-9 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-            aria-label="Dia siguiente"
-          >
-            <ChevronRight size={18} />
-          </button>
+                <div className="p-4 flex flex-col gap-2">
+                  {band.slots.map((slot) => (
+                    <div
+                      key={`${band.title}-${slot.start}`}
+                      className="px-4 py-3 border border-border bg-background/40 flex items-center justify-between gap-3"
+                    >
+                      <span className="text-base font-black text-primary">
+                        {slot.start} - {slot.end}
+                      </span>
+                      <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                        Cupo limitado
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            )
+          })}
         </div>
 
-        <div className="border border-border overflow-hidden">
-          <div className="grid grid-cols-3 bg-secondary border-b border-border px-6 py-3">
-            {['Hora', 'Clase', 'Instructor'].map((header) => (
-              <span
-                key={header}
-                className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground"
-              >
-                {header}
-              </span>
-            ))}
+        <div className="mt-5 border border-border bg-card/20 px-6 py-5 flex items-start gap-3">
+          <div className="w-9 h-9 bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+            <CalendarX2 size={16} className="text-primary" />
           </div>
-
-          {isClosedDay ? (
-            <div className="px-6 py-12 text-center bg-card/20">
-              <p className="text-lg font-black uppercase tracking-wide text-primary">Cerrado ❌</p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Sabado y domingo no hay clases.
-              </p>
-            </div>
-          ) : (
-            daySchedule.map((slot, index) => (
-              <div
-                key={`${activeDay}-${slot.start}-${slot.end}`}
-                className={`grid grid-cols-3 px-6 py-4 items-center gap-2 border-b border-border/40 last:border-0 hover:bg-secondary/30 transition-colors ${
-                  index % 2 === 0 ? '' : 'bg-card/30'
-                }`}
-              >
-                <span className="text-primary font-black text-base leading-none">
-                  {slot.start} - {slot.end}
-                </span>
-                <span className="text-sm font-bold text-foreground leading-tight">Clase de Boxeo</span>
-                <span className="text-xs text-muted-foreground">
-                  {siteContent.coachName} ({siteContent.coachNickname})
-                </span>
-              </div>
-            ))
-          )}
+          <div>
+            <p className="text-sm font-black uppercase tracking-widest text-foreground">
+              Sabado y domingo: Cerrado ❌
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Las clases se imparten unicamente de lunes a viernes.
+            </p>
+          </div>
         </div>
 
         <p className="mt-4 text-xs text-muted-foreground text-center">
-          Clases activas de lunes a viernes. Reserva tu espacio por WhatsApp o desde el formulario
-          de contacto.
+          Reserva tu espacio por WhatsApp o desde el formulario de contacto.
         </p>
       </div>
     </section>

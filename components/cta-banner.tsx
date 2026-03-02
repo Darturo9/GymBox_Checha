@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { buildWhatsAppUrl, siteContent } from '@/lib/site-content'
+import { buildWhatsAppUrl } from '@/lib/site-content'
 
 export default function CtaBanner() {
-  const ctaMessage = `Hola ${siteContent.coachName}, quiero empezar clases de boxeo esta semana.`
+  const ctaMessage = 'Hola, quiero empezar clases de boxeo esta semana.'
 
   return (
     <section className="relative py-24 bg-background overflow-hidden border-t border-border">
@@ -14,7 +14,7 @@ export default function CtaBanner() {
         aria-hidden="true"
       >
         <span className="text-[18vw] font-black uppercase tracking-tighter text-foreground/[0.03] whitespace-nowrap leading-none">
-          EL FLACO PESADO
+          POWER BOXING
         </span>
       </div>
 
@@ -35,8 +35,7 @@ export default function CtaBanner() {
             <span className="text-primary">proximo round</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Clases de boxeo con {siteContent.coachName} "{siteContent.coachNickname}".
-            Lunes a viernes en zona 18.
+            Clases de boxeo de lunes a viernes en zona 18.
           </p>
         </div>
 

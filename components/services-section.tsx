@@ -1,7 +1,6 @@
 'use client'
 
 import { Target, Zap, Shield, Trophy } from 'lucide-react'
-import { siteContent } from '@/lib/site-content'
 
 const services = [
   {
@@ -32,7 +31,7 @@ const services = [
     icon: Trophy,
     title: 'Mentoria De Ring',
     description:
-      `Clases dirigidas por ${siteContent.coachName} "${siteContent.coachNickname}" con enfoque tecnico y mental para evolucion constante.`,
+      'Seguimiento tecnico y mental para sostener ritmo, mejorar ejecucion y elevar rendimiento en cada sesion.',
     tag: 'Coach Directo',
     highlight: false,
   },

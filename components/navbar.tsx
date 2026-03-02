@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { buildWhatsAppUrl, siteContent } from '@/lib/site-content'
 
@@ -32,13 +33,14 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="#" className="flex items-center gap-2 group">
-          <span className="text-primary font-black text-xl tracking-tighter uppercase leading-none">
-            {siteContent.brandMain}
-            <span className="text-foreground">{siteContent.brandAccent}</span>
-          </span>
-          <span className="hidden lg:block text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-            by {siteContent.coachNickname}
-          </span>
+          <Image
+            src="/images/logo.webp"
+            alt={`Logo ${siteContent.brandShort}`}
+            width={120}
+            height={53}
+            className="h-7 w-auto object-contain"
+            priority
+          />
           <span className="w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform" />
         </Link>
 

@@ -7,13 +7,27 @@ export interface TimeSlot {
 }
 
 export type ScheduleByDay = Record<DayCode, TimeSlot[]>
+export type ScheduleBandTitle = 'Manana' | 'Tarde-Noche'
+
+export interface ScheduleBand {
+  title: ScheduleBandTitle
+  slots: TimeSlot[]
+}
 
 export interface SiteContent {
   brandName: string
+  brandShort: string
   brandMain: string
   brandAccent: string
   coachName: string
   coachNickname: string
+  coachDisplay: string
+  coachMentionEnabledSections: {
+    hero: boolean
+    contact: boolean
+    benefits: boolean
+    schedule: boolean
+  }
   whatsappDisplay: string
   whatsappInternational: string
   whatsappBaseUrl: string
@@ -24,6 +38,7 @@ export interface SiteContent {
   mapSearchUrl: string
   heroImage: string
   coachPhotos: string[]
+  scheduleBands: ScheduleBand[]
   weekDays: Array<{ code: DayCode; label: string }>
   weekdaySlots: TimeSlot[]
   schedule: ScheduleByDay
@@ -40,12 +55,23 @@ const weekdaySlots: TimeSlot[] = [
   { start: '20:00', end: '21:00', label: '8:00 PM - 9:00 PM' },
 ]
 
+const morningSlots: TimeSlot[] = weekdaySlots.slice(0, 3)
+const eveningSlots: TimeSlot[] = weekdaySlots.slice(3)
+
 export const siteContent: SiteContent = {
-  brandName: 'Power Boxing by "El flaco pesado"',
+  brandName: 'Power Boxing by El Flaco Pesado',
+  brandShort: 'Power Boxing',
   brandMain: 'Power',
   brandAccent: 'Boxing',
   coachName: 'Cesar',
-  coachNickname: 'El flaco pesado',
+  coachNickname: 'El Flaco Pesado',
+  coachDisplay: 'Cesar "El Flaco Pesado"',
+  coachMentionEnabledSections: {
+    hero: true,
+    contact: true,
+    benefits: false,
+    schedule: false,
+  },
   whatsappDisplay: '47726017',
   whatsappInternational: '50247726017',
   whatsappBaseUrl: 'https://wa.me/50247726017',
@@ -59,6 +85,10 @@ export const siteContent: SiteContent = {
     'https://www.google.com/maps/search/?api=1&query=14.663884985830025,-90.43357492489258',
   heroImage: '/images/cesar-2.webp',
   coachPhotos: ['/images/cesar-1.webp', '/images/cesar-2.webp'],
+  scheduleBands: [
+    { title: 'Manana', slots: morningSlots },
+    { title: 'Tarde-Noche', slots: eveningSlots },
+  ],
   weekDays: [
     { code: 'Lun', label: 'Lun' },
     { code: 'Mar', label: 'Mar' },

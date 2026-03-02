@@ -21,7 +21,7 @@ export default function ContactSection() {
     const note = String(form.get('message') ?? '').trim()
 
     const whatsappMessage = [
-      `Hola ${siteContent.coachName}, quiero reservar clase de boxeo.`,
+      'Hola, quiero reservar clase de boxeo.',
       `Nombre: ${name}`,
       `Telefono: ${phone}`,
       `Dia de interes: ${day}`,
@@ -75,7 +75,7 @@ export default function ContactSection() {
                 {
                   icon: MessageCircle,
                   title: 'Entrenador',
-                  lines: [siteContent.coachName, siteContent.coachNickname],
+                  lines: [siteContent.coachDisplay, 'Coach principal'],
                 },
               ].map((item) => {
                 const Icon = item.icon
@@ -217,16 +217,12 @@ export default function ContactSection() {
               </button>
 
               {submitted && (
-                <p className="text-xs text-muted-foreground">
-                  Se abrio WhatsApp con tu informacion para enviarla a {siteContent.coachName}.
-                </p>
+                <p className="text-xs text-muted-foreground">Se abrio WhatsApp con tu informacion.</p>
               )}
             </form>
 
             <a
-              href={buildWhatsAppUrl(
-                `Hola ${siteContent.coachName}, quiero informacion de horarios y precio.`
-              )}
+              href={buildWhatsAppUrl('Hola, quiero informacion de horarios y precio.')}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 border-2 border-foreground/20 text-foreground font-black uppercase tracking-widest text-sm px-6 py-4 hover:border-primary hover:text-primary transition-all duration-200"
@@ -249,7 +245,7 @@ export default function ContactSection() {
               <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm border border-border px-3 py-2 flex items-center gap-2">
                 <MapPin size={14} className="text-primary" />
                 <span className="text-xs font-black text-foreground uppercase tracking-wider">
-                  {siteContent.brandMain} {siteContent.brandAccent}
+                  {siteContent.brandShort}
                 </span>
               </div>
             </div>

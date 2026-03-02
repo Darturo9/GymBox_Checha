@@ -23,11 +23,11 @@ const pillars = [
   },
   {
     icon: Users,
-    title: 'Guia directa',
+    title: 'Seguimiento',
     description:
-      `Entrenamiento guiado por ${siteContent.coachName} "${siteContent.coachNickname}" para mantener correccion tecnica y progreso continuo.`,
-    stat: '1 COACH',
-    statLabel: 'Cesar al frente',
+      'Correcciones constantes para pulir tecnica, mejorar postura y sostener progreso medible cada semana.',
+    stat: 'PROGRESO',
+    statLabel: 'Evolucion continua',
   },
 ]
 
@@ -56,8 +56,8 @@ export default function BenefitsSection() {
             <span className="w-6 h-px bg-primary" />
           </div>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-foreground text-balance leading-tight">
-            Los tres pilares de{' '}
-            <span className="text-primary">{siteContent.coachNickname}</span>
+            Los tres pilares del{' '}
+            <span className="text-primary">entrenamiento</span>
           </h2>
         </div>
 
@@ -119,7 +119,7 @@ export default function BenefitsSection() {
               <div className="relative aspect-[4/5]">
                 <Image
                   src={photoSrc}
-                  alt={`${siteContent.coachName} en entrenamiento de boxeo ${index + 1}`}
+                  alt={`Entrenamiento de boxeo en accion ${index + 1}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -127,7 +127,7 @@ export default function BenefitsSection() {
               </div>
               <div className="absolute bottom-3 left-3 bg-background/85 border border-border px-3 py-1.5">
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
-                  Cesar En Accion
+                  Entrenamiento En Accion
                 </p>
               </div>
             </article>
