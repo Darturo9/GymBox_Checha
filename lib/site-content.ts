@@ -54,9 +54,9 @@ export const siteContent: SiteContent = {
   fullAddress:
     'Pinares del Norte, zona 18, Ciudad de Guatemala, Sexta calle 63-37, calle principal',
   mapEmbedUrl:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.3394421320404!2d-90.43369450295084!3d14.66580677329911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858997b6f825752b%3A0x2720371fdcd4e6f0!2sPinares%20del%20norte%20zona%2018!5e0!3m2!1ses!2sgt!4v1772478720060!5m2!1ses!2sgt',
+    'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3859.860006269015!2d-90.43357492489258!3d14.663884985830025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTTCsDM5JzUwLjAiTiA5MMKwMjUnNTEuNiJX!5e0!3m2!1ses!2sgt!4v1772479767990!5m2!1ses!2sgt',
   mapSearchUrl:
-    'https://www.google.com/maps/search/?api=1&query=Pinares+del+norte+zona+18',
+    'https://www.google.com/maps/search/?api=1&query=14.663884985830025,-90.43357492489258',
   heroImage: '/images/cesar-2.webp',
   coachPhotos: ['/images/cesar-1.webp', '/images/cesar-2.webp'],
   weekDays: [
