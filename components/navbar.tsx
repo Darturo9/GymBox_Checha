@@ -36,9 +36,9 @@ export default function Navbar() {
           <Image
             src="/images/logo.webp"
             alt={`Logo ${siteContent.brandShort}`}
-            width={120}
-            height={53}
-            className="h-7 w-auto object-contain"
+            width={190}
+            height={84}
+            className="h-11 w-auto object-contain"
             priority
           />
           <span className="w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform" />
