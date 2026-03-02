@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { buildWhatsAppUrl, siteContent } from '@/lib/site-content'
 
@@ -30,17 +29,13 @@ export default function Navbar() {
         scrolled ? 'bg-background/95 backdrop-blur-md border-b border-border' : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-20">
+      <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="#" className="flex items-center gap-2 group">
-          <Image
-            src="/images/logo.webp"
-            alt={`Logo ${siteContent.brandShort}`}
-            width={300}
-            height={132}
-            className="h-14 md:h-16 w-auto object-contain"
-            priority
-          />
+          <span className="text-primary font-black text-xl tracking-tighter uppercase leading-none">
+            {siteContent.brandMain}{' '}
+            <span className="text-foreground">{siteContent.brandAccent}</span>
+          </span>
           <span className="w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform" />
         </Link>
 
