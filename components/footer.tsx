@@ -36,6 +36,23 @@ export default function Footer() {
           &copy; {year} {siteContent.brandName}. Todos los derechos reservados.
         </p>
       </div>
+
+      <div className="border-t border-border/60">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 py-4 text-center">
+          <p className="text-xs text-muted-foreground/70">
+            Pagina creada por{' '}
+            <a
+              href="https://www.solucionesweb-2025.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-semibold hover:underline"
+            >
+              Soluciones Web
+            </a>{' '}
+            · www.solucionesweb-2025.com
+          </p>
+        </div>
+      </div>
     </footer>
   )
 }
