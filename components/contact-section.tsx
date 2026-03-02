@@ -6,13 +6,30 @@ import { buildWhatsAppUrl, siteContent } from '@/lib/site-content'
 
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
+  const [phoneError, setPhoneError] = useState('')
 
   const activeDays = siteContent.weekDays.filter(
     (day) => day.code !== 'Sab' && day.code !== 'Dom'
   )
 
+  const normalizeGuatemalaPhone = (value: string) => {
+    const digitsOnly = value.replace(/\D/g, '')
+    if (digitsOnly.startsWith('502')) {
+      return digitsOnly.slice(3)
+    }
+    return digitsOnly
+  }
+
+  const isValidGuatemalaPhone = (value: string) => {
+    const localPhone = normalizeGuatemalaPhone(value)
+    return /^[2-7]\d{7}$/.test(localPhone)
+  }
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setSubmitted(false)
+    setPhoneError('')
+
     const form = new FormData(event.currentTarget)
     const name = String(form.get('name') ?? '').trim()
     const phone = String(form.get('phone') ?? '').trim()
@@ -20,10 +37,17 @@ export default function ContactSection() {
     const time = String(form.get('time') ?? '').trim()
     const note = String(form.get('message') ?? '').trim()
 
+    if (!isValidGuatemalaPhone(phone)) {
+      setPhoneError('Ingresa un telefono valido de Guatemala (8 digitos).')
+      return
+    }
+
+    const localPhone = normalizeGuatemalaPhone(phone)
+
     const whatsappMessage = [
       'Hola, quiero reservar clase de boxeo.',
       `Nombre: ${name}`,
-      `Telefono: ${phone}`,
+      `Telefono: +502 ${localPhone}`,
       `Dia de interes: ${day}`,
       `Horario: ${time}`,
       note ? `Mensaje: ${note}` : null,
@@ -136,8 +160,23 @@ export default function ContactSection() {
                     type="tel"
                     required
                     placeholder="47726017"
+                    inputMode="numeric"
+                    autoComplete="tel"
+                    maxLength={14}
+                    pattern="(\+?502[\s-]?)?[2-7][0-9]{7}"
+                    title="Ingresa un telefono de Guatemala valido (ej. 47726017 o +502 47726017)"
+                    aria-invalid={phoneError ? 'true' : 'false'}
+                    aria-describedby={phoneError ? 'phone-error' : undefined}
+                    onChange={() => {
+                      if (phoneError) setPhoneError('')
+                    }}
                     className="bg-input border border-border text-foreground placeholder:text-muted-foreground text-sm px-4 py-3 focus:outline-none focus:border-primary transition-colors"
                   />
+                  {phoneError && (
+                    <p id="phone-error" className="text-[11px] text-primary font-semibold">
+                      {phoneError}
+                    </p>
+                  )}
                 </div>
               </div>
 
